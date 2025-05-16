@@ -1,0 +1,27 @@
+name: Build macOS Binary
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout kodu
+        uses: actions/checkout@v3
+
+      - name: pyinstaller ve pyautogui kur
+        run: |
+          pip install pyinstaller pyautogui
+
+      - name: Derle
+        run: |
+          pyinstaller --onefile auto_clicker.py
+
+      - name: Artifact olarak yayınla
+        uses: actions/upload-artifact@v3
+        with:
+          name: macos-binary
+          path: dist/auto_clicker
