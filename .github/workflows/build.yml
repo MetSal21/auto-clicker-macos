@@ -14,13 +14,14 @@ jobs:
 
       - name: pyinstaller ve pyautogui kur
         run: |
+          python3 -m pip install --upgrade pip
           pip install pyinstaller pyautogui
 
       - name: Derle
         run: |
           pyinstaller --onefile auto_clicker.py
 
-      - name: Artifact olarak yayınla
+      - name: Derlenmiş dosyayı yükle
         uses: actions/upload-artifact@v3
         with:
           name: macos-binary
